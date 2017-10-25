@@ -1,0 +1,24 @@
+GAME=GAME.EXE
+MODEL=l
+CC=tcc
+LD=tcc
+AR=tlib
+CFLAGS=-O -G -Z -m$(MODEL) -1 -IC:\TC\INCLUDE
+LDFLAGS=-m$(MODEL) -f -LC:\TC\LIB GRAPHICS.LIB
+OBJ1=game.obj gfx.obj
+
+all: $(GAME)
+	@echo "OPTIMIZING..."
+	@dir $(GAME)
+
+$(GAME) : $(OBJ1)
+	@echo "Linking..."
+	@$(LD) $(LDFLAGS) $(OBJ1)
+
+.c.obj:
+	@echo 'Compiling $<...'
+	@$(CC) $(CFLAGS) -c $<
+clean:
+	@echo cleaning
+	del *.obj
+
